@@ -13,10 +13,13 @@ The aim of this repository is to demonstrate the capabilities of GPT-4o to analy
     - [Usage](#usage)
     - [Parameters](#parameters)
     - [Example](#example)
+    - [Deployment](#deployment)
   - [Video Shot Analysis Script](#video-shot-analysis-script)
     - [Usage](#usage-1)
     - [Parameters](#parameters-1)
     - [Example](#example-1)
+    - [Demo](#demo)
+    - [Deployment](#deployment-1)
   - [YouTube Video Downloader Script](#youtube-video-downloader-script)
     - [Usage](#usage-2)
     - [Parameters](#parameters-2)
@@ -41,7 +44,7 @@ It can take a minute to set up. If you run into problems, see [Python environmen
 
 ### Environment Configuration
 
-Create a `.env` file in the root directory of your project with the following content. You can use the provided [`.env-sample.ini`](.env-sample.ini) as a template:
+Create a `.env` file in the root directory of your project with the following content. You can use the provided [`.env-sample`](.env-sample) as a template:
 
 ```
 SYSTEM_PROMPT="You are an expert on Video Analysis. You will be shown a series of images from a video. Describe what is happening in the video, including the objects, actions, and any other relevant details. Be as specific and detailed as possible."
@@ -105,7 +108,24 @@ A screenshot:
 
 <img src="./Screenshot.png" alt="Sample Screenshot"/>
 
-To deploy the application on your Azure tenant in an Azure Container Registry (Docker), follow this [guide: Build and store an image by using Azure Container Registry](https://learn.microsoft.com/en-us/training/modules/deploy-run-container-app-service/3-exercise-build-images) and then create and deploy the web app following this [guide: Create and deploy a web app from a Docker image](https://learn.microsoft.com/en-us/training/modules/deploy-run-container-app-service/5-exercise-deploy-web-app).
+### Deployment
+
+To deploy the `video-analysis-with-gpt-4o.py` script on your Azure tenant in an Azure Container Registry (Docker), follow these steps:
+
+1. Ensure you have the necessary environment variables set in your `.env` file.
+2. Use the provided [deploy.sh](deploy.sh) or [deploy.ps1](deploy.ps1) script to build and deploy the Docker image.
+
+For Bash:
+```sh
+./deploy.sh VideoAnalysisGpt4o video-analysis-with-gpt-4o.py
+```
+
+For PowerShell:
+```powershell
+pwsh ./deploy.ps1 -Prefix VideoAnalysisGpt4o -PythonScript video-analysis-with-gpt-4o.py
+```
+
+This will build the Docker image using the [Dockerfile](Dockerfile) and deploy it to Azure App Service.
 
 ## Video Shot Analysis Script
 
@@ -150,6 +170,28 @@ To analyze a YouTube video with a shot interval of 60 seconds, extracting 1 fram
 - **Maximum duration to process (seconds)**: 120
 
 Then click the "Analyze video" button to start the analysis.
+
+### Demo
+![Video Shot Analysis Demo](https://raw.githubusercontent.com/john-carroll-sw/video-analysis-with-gpt-4o/main/VideoShotAnalysisDemo.gif)
+
+### Deployment
+
+To deploy the `video_shot_analysis.py` script on your Azure tenant in an Azure Container Registry (Docker), follow these steps:
+
+1. Ensure you have the necessary environment variables set in your `.env` file.
+2. Use the provided [deploy.sh](deploy.sh) or [deploy.ps1](deploy.ps1) script to build and deploy the Docker image.
+
+For Bash:
+```sh
+./deploy.sh VideoShotAnalysis video_shot_analysis.py
+```
+
+For PowerShell:
+```powershell
+pwsh ./deploy.ps1 -Prefix VideoShotAnalysis -PythonScript video_shot_analysis.py
+```
+
+This will build the Docker image using the [Dockerfile](Dockerfile) and deploy it to Azure App Service.
 
 ## YouTube Video Downloader Script
 

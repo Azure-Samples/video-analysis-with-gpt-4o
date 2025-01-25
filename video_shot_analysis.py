@@ -296,7 +296,7 @@ if st.button("Analyze video", use_container_width=True, type='primary'):
         ydl_opts = {
                 'format': '(bestvideo[vcodec^=av01]/bestvideo[vcodec^=vp9]/bestvideo)+bestaudio/best',
                 'outtmpl': 'full_video.%(ext)s',
-                'force_keyframes_at_cuts': True,
+                'force_keyframes_at_cuts': True
         }
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         info_dict = ydl.extract_info(url, download=False)

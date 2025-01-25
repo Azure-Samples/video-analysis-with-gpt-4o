@@ -287,7 +287,7 @@ if st.button("Analyze video", use_container_width=True, type='primary'):
                 'format': '(bestvideo[vcodec^=av01]/bestvideo[vcodec^=vp9]/bestvideo)+bestaudio/best',
                 # 'outtmpl': os.path.join(video_dir, 'full_video.%(ext)s'),
                 'outtmpl': 'segment_%(start)s.mp4',
-                'force_keyframes_at_cuts': True,
+                'force_keyframes_at_cuts': True
         }
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         if continuous_transmision == False:
